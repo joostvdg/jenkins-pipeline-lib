@@ -2,7 +2,7 @@ def call (String credentialsId) {
     assert credentialsId: "CredentialsId must be given as parameter."
 
     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PSS', usernameVariable: 'USR')]) {
-        if ("${env.PSS}".startsWithAny('{') && "${env.PSS}".endsWithAny('}')) {
+        if ("${env.PSS}".startsWith('{') && "${env.PSS}".endsWith('}')) {
             // we're safe
             echo '[WARN] Encrypted maven password detected, can this agent decrypt it?'
         } else {
@@ -17,6 +17,7 @@ def call (String credentialsId) {
                 </server>
             </servers>
         </settings>'''
+        echo '[INFO] Wrote settings to jenkins-settings.xml'
     }
 
 
