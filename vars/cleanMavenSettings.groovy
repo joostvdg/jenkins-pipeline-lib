@@ -1,5 +1,5 @@
 def call() {
-    if (fileExists 'jenkins-settings.xml') {
+    if (fileExists('jenkins-settings.xml')) {
         if (isUnix()) {
             // https://unix.stackexchange.com/questions/118217/chmod-silent-mode-how-force-exit-code-0-in-spite-of-error
             sh 'rm jenkins-settings.xml || true'
