@@ -1,4 +1,4 @@
-def call (String credentialsId) {
+def call (String credentialsId, String serverId) {
     assert credentialsId: "CredentialsId must be given as parameter."
 
     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PSS', usernameVariable: 'USR')]) {
@@ -8,15 +8,15 @@ def call (String credentialsId) {
         } else {
             echo '[WARN] Maven password not encrypted, please make sure to use the clean function (cleanMavenSettings)'
         }
-        writeFile encoding: 'UTF-8', file: 'jenkins-settings.xml', text: '''<settings>
+        writeFile encoding: 'UTF-8', file: 'jenkins-settings.xml', text: """<settings>
             <servers>
                 <server>
-                    <id>artifactory</id>
+                    <id>${serverId}</id>
                     <username>${env.USR}</username>
                     <password>${env.PSS}</password>
                 </server>
             </servers>
-        </settings>'''
+        </settings>"""
         echo '[INFO] Wrote settings to jenkins-settings.xml'
     }
 
