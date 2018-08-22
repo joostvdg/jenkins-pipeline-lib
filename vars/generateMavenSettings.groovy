@@ -1,5 +1,6 @@
 def call (String credentialsId, String serverId) {
-    assert credentialsId: "CredentialsId must be given as parameter."
+    assert credentialsId: "CredentialsId is not set. It must be given as first parameter. (string, Jenkins credentialsId)"
+    assert serverId: "ServerId is not set. It must be given as second parameter and should match your distributionManagement.id."
 
     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PSS', usernameVariable: 'USR')]) {
         if ("${env.PSS}".startsWith('{') && "${env.PSS}".endsWith('}')) {
