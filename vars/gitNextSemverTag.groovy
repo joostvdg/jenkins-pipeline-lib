@@ -1,7 +1,8 @@
-def call(String currentVersion) {
+def call(currentVersion) {
     def gitTags = retrieveGitTagsForVersion("v${currentVersion}.*")
     def tagsArray = gitTags.split('\n')
-    return getNewVersion(tagsArray, currentVersion)
+    def newVersion = getNewVersion(tagsArray, currentVersion)
+    echo "[INFO] new version ${newVersion}"
 }
 
 /**
@@ -10,7 +11,7 @@ def call(String currentVersion) {
  * @param versionMask the version to filter the tags for, e.g. v1.4.*
  * @return the output from the git command (git tag -l ...), which results in a multi-line response with the tags
  */
-String retrieveGitTagsForVersion(String versionMask) {
+String retrieveGitTagsForVersion(versionMask) {
     String command = "git tag -l \"${versionMask}\""
     String response = ""
     if (isUnix()) {
@@ -65,11 +66,10 @@ def getNewVersion(def listOfExistingVersions, String currentVersion) {
     int patchPrevious = 0
     int patchNext = patchPrevious
     if (filteredVersions.isEmpty()) {
-        steps.echo "We found no existing tag, so version will be .0"
+        echo "We found no existing tag, so version will be .0"
     } else {
         patchPrevious = filteredVersions.get(filteredVersions.size() - 1)
         patchNext = patchPrevious + 1
-        steps.echo "Max previous patch version found was ${patchPrevious}"
     }
-    return "${currentVersion}.${patchNext}"
+    return currentVersion + "." + patchNext
 }
