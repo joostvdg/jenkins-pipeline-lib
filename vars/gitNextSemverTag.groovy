@@ -42,7 +42,7 @@ String retrieveGitTagsForVersion(String versionMask) {
  * @return
  */
 @NonCPS
-String getNewVersion(def listOfExistingVersions, String currentVersion) {
+def getNewVersion(def listOfExistingVersions, String currentVersion) {
     assert listOfExistingVersions: "We need listOfExistingVersions to be valid"
     assert currentVersion: "We need currentVersion to be valid"
 
