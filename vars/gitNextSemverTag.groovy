@@ -1,4 +1,4 @@
-def call() {
+def call(String currentVersion) {
     def gitTags = retrieveGitTagsForVersion("v${currentVersion}.*")
     def tagsArray = gitTags.split('\n')
     return getNewVersion(tagsArray, currentVersion)
