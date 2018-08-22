@@ -1,4 +1,4 @@
-def call() {
-    def currentVersion = mavenNextReleaseVersion()
+def call(pomFile) {
+    def currentVersion = mavenNextReleaseVersion(pomFile)
     return gitNextSemverTag('currentVersion')
 }
