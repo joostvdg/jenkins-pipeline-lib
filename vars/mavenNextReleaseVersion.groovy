@@ -7,11 +7,3 @@ def call(String pomFile) {
     echo "[INFO] Maven pom version: ${version}"
     return version
 }
-
-//@NonCPS
-//def readVersionFromPom(String pomFile) {
-//    def pom = readMavenPom file: pomFile
-//    String version = "${pom.version}"
-//    version = version.replace("-SNAPSHOT", "")
-//    return version
-//}
