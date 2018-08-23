@@ -1,5 +1,6 @@
 def call(currentVersion) {
-    def gitTags = retrieveGitTagsForVersion("v${currentVersion}.*")
+    def versionMask = "v${currentVersion}.*"
+    def gitTags = retrieveGitTagsForVersion(versionMask)
     def tagsArray = gitTags.split('\n')
     def newVersion = getNewVersion(tagsArray, currentVersion)
     echo "[INFO] new version ${newVersion}"
