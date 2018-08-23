@@ -9,7 +9,7 @@ def call(String pomFile) {
 @NonCPS
 def readVersionFromPom(String pomFile) {
     def pom = readMavenPom file: pomFile
-    def version = pom.version
+    String version = "${pom.version}"
     version = version.replace("-SNAPSHOT", "")
     return version
 }
