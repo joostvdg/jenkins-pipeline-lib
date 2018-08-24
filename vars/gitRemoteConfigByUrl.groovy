@@ -4,7 +4,7 @@ def call(String url, credentialsId) {
     assert url.contains('https://'): 'Url is not a https url, this only works with "https://....git" kind of urls'
 
     withCredentials([string(credentialsId: credentialsId, variable: 'TOKEN')]) {
-        def alteredUrl = url.replace("http://", "https://${env.TOKEN}:x-oauth-basic@")
+        def alteredUrl = url.replace("https://", "https://${env.TOKEN}:x-oauth-basic@")
         sh "git remote set-url origin ${alteredUrl}"
     }
 }
