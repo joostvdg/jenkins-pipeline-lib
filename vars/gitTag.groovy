@@ -2,9 +2,9 @@ def call(String tagName) {
     assert tagName: 'I need tagName to be valid'
     def createTagCommand = """
     git add --all
-    git commit -m "release \$(VERSION)" --allow-empty
+    git commit -m "release ${tagName}" --allow-empty
     git tag -fa ${tagName} -m "Jenkins created version ${tagName}"
-    git push origin v\$(VERSION)
+    git push origin v${tagName}
     """
     if (isUnix()) {
         sh createTagCommand
