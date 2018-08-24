@@ -4,7 +4,7 @@ def call(String tagName) {
     git add --all
     git commit -m "release ${tagName}" --allow-empty
     git tag -fa ${tagName} -m "Jenkins created version ${tagName}"
-    git push origin v${tagName}
+    git push origin ${tagName}
     """
     if (isUnix()) {
         sh createTagCommand
