@@ -4,6 +4,7 @@ def call(currentVersion) {
     def tagsArray = gitTags.split('\n')
     def newVersion = getNewVersion(tagsArray, currentVersion)
     echo "[INFO] new version ${newVersion}"
+    return newVersion
 }
 
 /**
