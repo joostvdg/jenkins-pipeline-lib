@@ -1,4 +1,4 @@
-def call (String url, String expectedCode, string credentialsId, boolean insecure) {
+def call (String url, String expectedCode, String credentialsId, boolean insecure) {
     def secureInfo = ""
     if (insecure) {
         secureInfo = "--insecure"
