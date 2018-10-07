@@ -1,4 +1,4 @@
-def call (String url, String expectedCode, String credentialsId, boolean insecure) {
+def call (String baseUrl, String chart, String version, String expectedCode, String credentialsId, boolean insecure) {
     def secureInfo = ""
     if (insecure) {
         secureInfo = "--insecure"
@@ -10,6 +10,7 @@ def call (String url, String expectedCode, String credentialsId, boolean insecur
                 usernameVariable: "USER",
                 passwordVariable: "PASS"
         )]) {
+            def url = "${baseUrl}/api/charts/${chart}/${version}"
             responseCode = sh(returnStdout: true, script: "curl ${secureInfo} -u $USER:$PASS -sL -w \"%{http_code}\" ${url} -o /dev/null --max-time 15").trim()
         }
     } catch(err) {
